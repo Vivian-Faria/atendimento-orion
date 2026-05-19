@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Órion Cloud Kitchens - Hub Operacional</title>
+    <title>Órion Cloud Kitchens - Hub Operacional v2.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -11,232 +11,210 @@
             --primary: #0f172a;
             --secondary: #1e3a8a;
             --accent: #f59e0b;
-            --bg: #f1f5f9;
-            --card: #ffffff;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --danger: #ef4444;
-            --success: #22c55e;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
             --border: #e2e8f0;
+            --danger: #ef4444;
+            --success: #10b981;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
-        body { background: var(--bg); color: var(--text-dark); line-height: 1.5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
+        
+        nav { background: var(--primary); padding: 15px 0; border-bottom: 2px solid var(--accent); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 20px; padding: 0 20px; }
+        .nav-link { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 8px 16px; border-radius: 6px; transition: 0.3s; cursor: pointer; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); }
+        .nav-link.active { background: var(--accent); color: var(--primary); }
 
-        /* Navigation */
-        nav { background: var(--primary); padding: 0.75rem 0; border-bottom: 3px solid var(--accent); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 15px; padding: 0 20px; }
-        .nav-btn { background: transparent; border: none; color: white; padding: 10px 20px; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.3s; font-size: 0.9rem; }
-        .nav-btn:hover { background: rgba(255,255,255,0.1); }
-        .nav-btn.active { background: var(--accent); color: var(--primary); }
-
-        .container { max-width: 1200px; margin: 2rem auto; padding: 0 20px; }
-        .page { display: none; animation: fadeIn 0.4s ease; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        .page { display: none; }
         .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Header */
-        .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 3rem 2rem; border-radius: 12px; margin-bottom: 2rem; border-bottom: 5px solid var(--accent); }
-        .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .hero-meta { display: flex; gap: 20px; font-size: 0.85rem; opacity: 0.9; flex-wrap: wrap; }
-
-        /* Layout Cards */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
-        .card { background: var(--card); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .card-title { font-size: 1.1rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px 0; border-bottom: 4px solid var(--accent); border-radius: 12px 12px 0 0; }
+        .header-content { padding: 0 40px; }
+        .meta-info { display: flex; gap: 20px; font-size: 0.8rem; margin-top: 10px; opacity: 0.8; }
         
-        /* Manual Content */
-        .principle-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 1rem; border-radius: 8px; color: #92400e; margin-bottom: 1.5rem; font-style: italic; }
-        .resp-item { margin-bottom: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent); }
-        .resp-item h4 { font-size: 0.95rem; color: var(--primary); }
-        .resp-item p { font-size: 0.85rem; color: var(--text-light); }
+        .card { background: white; padding: 25px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-title { font-size: 1.2rem; margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
         
-        .timeline { border-left: 2px dashed var(--border); padding-left: 20px; margin-left: 10px; }
-        .time-block { position: relative; margin-bottom: 1.5rem; }
-        .time-block::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
-        .time-label { font-weight: 800; color: var(--secondary); font-size: 0.85rem; }
+        .principle-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 15px; border-radius: 8px; color: #92400e; margin-bottom: 25px; border-left: 5px solid var(--accent); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .resp-item { margin-bottom: 15px; padding: 10px; border-radius: 8px; background: #f1f5f9; }
+        .resp-item strong { color: var(--secondary); display: block; margin-bottom: 5px; }
 
-        .forbidden-list { list-style: none; }
-        .forbidden-list li { color: var(--danger); font-size: 0.9rem; margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; }
+        .timeline { border-left: 3px solid var(--border); padding-left: 20px; margin-left: 10px; }
+        .time-item { position: relative; margin-bottom: 20px; }
+        .time-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
 
-        /* Tables & KPIs */
-        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1rem; }
-        .kpi-card { background: var(--bg); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
-        .kpi-val { display: block; font-size: 1.2rem; font-weight: 800; color: var(--primary); }
-        .kpi-name { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; }
+        .kpi-box { text-align: center; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border); }
+        .kpi-val { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: block; }
+        .kpi-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        th, td { padding: 10px; border: 1px solid var(--border); text-align: left; }
-        th { background: #f8fafc; color: var(--text-light); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        th, td { padding: 12px; border: 1px solid var(--border); text-align: left; }
+        th { background: #f8fafc; }
 
-        /* Form */
-        .fdd-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .forbidden { color: var(--danger); font-weight: 600; list-style: none; }
+        .forbidden li { margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
+
+        /* Form Styles */
+        .fdd-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
         .full { grid-column: span 2; }
-        label { font-size: 0.85rem; font-weight: 600; }
-        input, select { padding: 10px; border-radius: 8px; border: 1px solid var(--border); outline: none; transition: 0.2s; }
-        input:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
-        .btn-main { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-main:hover { background: var(--primary); }
-        .btn-add { background: #e2e8f0; color: var(--text-dark); border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; margin-top: 5px; width: fit-content; }
+        input, select { padding: 12px; border: 1px solid var(--border); border-radius: 8px; outline: none; transition: 0.3s; }
+        input:focus, select:focus { border-color: var(--accent); }
+        .btn-submit { background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--primary); }
+        .btn-add { background: #e2e8f0; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; width: fit-content; margin-top: 5px; }
 
-        /* Dashboard */
-        .charts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        .chart-box { background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); min-height: 400px; }
+        .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .chart-container { background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border); min-height: 400px; }
 
-        @media (max-width: 768px) {
-            .fdd-form { grid-template-columns: 1fr; }
-            .kpi-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .grid-2, .fdd-form, .dash-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="nav-container">
-        <button class="nav-btn active" id="btn-manual" onclick="showPage('manual')">Manual do Atendente</button>
-        <button class="nav-btn" id="btn-fdd" onclick="showPage('fdd')">FDD (Registro)</button>
-        <button class="nav-btn" id="btn-dash" onclick="showPage('dash')">Dashboard</button>
+        <a class="nav-link active" id="nav-manual" onclick="showPage('manual')">Manual do Atendente</a>
+        <a class="nav-link" id="nav-fdd" onclick="showPage('fdd')">FDD (Registro)</a>
+        <a class="nav-link" id="nav-dash" onclick="showPage('dash')">Dashboard</a>
     </div>
 </nav>
 
-<div class="container">
-    
-    <!-- PÁGINA: MANUAL -->
-    <section id="manual" class="page active">
-        <div class="hero">
+<div id="manual" class="page active">
+    <header>
+        <div class="header-content">
             <h1>Atendente Órion</h1>
-            <div class="hero-meta">
-                <span><i class="fas fa-layer-group"></i> Área: Operações</span>
+            <div class="meta-info">
+                <span><i class="fas fa-building"></i> Área: Operações</span>
                 <span><i class="fas fa-user-tie"></i> Gestor: Gerente Operacional</span>
-                <span><i class="fas fa-calendar-alt"></i> Versão: 2.0 (Abril/2026)</span>
+                <span><i class="fas fa-calendar-check"></i> Implementação: Abril 2026</span>
+                <span><i class="fas fa-code-branch"></i> Versão: 2.0</span>
             </div>
         </div>
-
+    </header>
+    <div class="container">
         <div class="principle-box">
-            <strong>Princípio Orientador:</strong> O atendente não encerra sua atuação ao receber a demanda. Ele encerra ao confirmar que o cliente teve seu problema resolvido, independentemente de quem executou a solução.
+            <strong>Princípio Orientador:</strong> O atendente não encerra sua atuação ao receber a demanda. Ele encerra ao confirmar que o cliente foi atendido e teve seu problema resolvido, independentemente de quem executou a solução.
         </div>
 
-        <div class="grid-3">
+        <div class="grid-2">
             <div class="card">
-                <h3 class="card-title"><i class="fas fa-bullseye"></i> Missão do Cargo</h3>
-                <p style="font-size: 0.9rem;">Ser o <strong>ponto de resolução</strong> do cliente, não apenas o ponto de contato. Conduzir a demanda até o desfecho, mobilizando recursos internos.</p>
-            </div>
-            <div class="card">
-                <h3 class="card-title"><i class="fas fa-chart-line"></i> KPIs Meta</h3>
-                <div class="kpi-grid">
-                    <div class="kpi-card"><span class="kpi-val">&lt; 5m</span><span class="kpi-name">TMA</span></div>
-                    <div class="kpi-card"><span class="kpi-val">&ge; 60</span><span class="kpi-name">NPS</span></div>
-                    <div class="kpi-card"><span class="kpi-val">&lt; 1m</span><span class="kpi-name">TME</span></div>
+                <h3 class="section-title"><i class="fas fa-bullseye"></i> Missão do Cargo</h3>
+                <p>Ser o <strong>ponto de resolução</strong> do cliente, não apenas o ponto de contato. Conduzir a demanda até o desfecho, mobilizando os recursos internos necessários.</p>
+                <br>
+                <div class="grid-2" style="gap:10px;">
+                    <div class="kpi-box"><span class="kpi-val">&lt; 5m</span><span class="kpi-label">TMA</span></div>
+                    <div class="kpi-box"><span class="kpi-val">&ge; 60</span><span class="kpi-label">NPS</span></div>
+                    <div class="kpi-box"><span class="kpi-val">&lt; 1m</span><span class="kpi-label">TME</span></div>
                 </div>
             </div>
+
             <div class="card">
-                <h3 class="card-title"><i class="fas fa-ban"></i> O que NÃO fazer</h3>
-                <ul class="forbidden-list">
-                    <li><i class="fas fa-times-circle"></i> Tomar decisões comerciais/preços.</li>
-                    <li><i class="fas fa-times-circle"></i> Resolver risco de churn sem o CS.</li>
+                <h3 class="section-title"><i class="fas fa-ban"></i> O que NÃO pode fazer</h3>
+                <ul class="forbidden">
+                    <li><i class="fas fa-times-circle"></i> Decisões comerciais ou de precificação.</li>
+                    <li><i class="fas fa-times-circle"></i> Demandas de risco de Churn sem CS.</li>
                     <li><i class="fas fa-times-circle"></i> Encerrar sem confirmação do cliente.</li>
+                    <li><i class="fas fa-times-circle"></i> Comprometer prazos sem validação setorial.</li>
                 </ul>
             </div>
         </div>
 
-        <div class="grid-3" style="grid-template-columns: 2fr 1fr;">
-            <div class="card">
-                <h3 class="card-title"><i class="fas fa-clipboard-list"></i> Responsabilidades</h3>
+        <div class="card">
+            <h3 class="section-title"><i class="fas fa-tasks"></i> Responsabilidades Principais</h3>
+            <div class="grid-2">
                 <div class="resp-item">
-                    <h4>01. Atendimento ao Cliente</h4>
-                    <p>Receber, registrar via ChatPro e acompanhar até a resolução. A demanda só morre quando o cliente valida.</p>
+                    <strong>01. Atendimento ao Cliente</strong>
+                    Receber, registrar e acompanhar demandas via ChatPro. Conduzir até a resolução completa ou definição de prazo.
                 </div>
                 <div class="resp-item">
-                    <h4>02. Controle Operacional</h4>
-                    <p>Conferir estoques, embalagens e status de pedidos na expedição sob demanda.</p>
+                    <strong>02. Controle Operacional</strong>
+                    Conferir estoque, embalagens e status de pedidos na expedição. Direcionar substituições por divergência.
                 </div>
                 <div class="resp-item">
-                    <h4>03. Encaminhamento Interno</h4>
-                    <p>Manter cards no Trello/FDD atualizados com setor, prazo e status real.</p>
+                    <strong>03. Encaminhamento Interno</strong>
+                    Direcionar para setores claros via Trello/FDD e acompanhar até a conclusão. Manter cards atualizados.
                 </div>
                 <div class="resp-item">
-                    <h4>04. Suporte Técnico</h4>
-                    <p>Acionar suporte via WhatsApp e documentar horário/problema para rastreabilidade.</p>
+                    <strong>04. Suporte Técnico</strong>
+                    Identificar necessidades e acionar suporte via WhatsApp de forma ágil e documentada no FDD.
                 </div>
             </div>
+        </div>
+
+        <div class="grid-2">
             <div class="card">
-                <h3 class="card-title"><i class="fas fa-clock"></i> Rotina Diária</h3>
+                <h3 class="section-title"><i class="fas fa-clock"></i> Rotina e Fluxo</h3>
                 <div class="timeline">
-                    <div class="time-block">
-                        <span class="time-label">10:00 - Abertura</span>
-                        <p style="font-size: 0.8rem;">Ponto e conferência imediata do ChatPro.</p>
-                    </div>
-                    <div class="time-block">
-                        <span class="time-label">10:30 - Revisão</span>
-                        <p style="font-size: 0.8rem;">Cobrar setores internos sobre demandas abertas.</p>
-                    </div>
-                    <div class="time-block">
-                        <span class="time-label">11:00 às 17:30</span>
-                        <p style="font-size: 0.8rem;">Atendimento receptivo e suporte operacional.</p>
-                    </div>
-                    <div class="time-block">
-                        <span class="time-label">17:30 - Passagem</span>
-                        <p style="font-size: 0.8rem;">Transferência de bastão e preenchimento FDD.</p>
-                    </div>
+                    <div class="time-item"><strong>10:00:</strong> Chegada, Ponto e conferência do ChatPro.</div>
+                    <div class="time-item"><strong>10:30:</strong> Revisão de demandas em aberto (Trello).</div>
+                    <div class="time-item"><strong>11:00:</strong> Atendimento receptivo e suporte estoques.</div>
+                    <div class="time-item"><strong>17:30:</strong> Passagem de bastão e fechamento de relatórios.</div>
                 </div>
             </div>
+            <div class="card">
+                <h3 class="section-title"><i class="fas fa-trophy"></i> Bônus Performance</h3>
+                <table>
+                    <thead><tr><th>Faixa</th><th>NPS</th><th>TMA</th><th>Bônus</th></tr></thead>
+                    <tbody>
+                        <tr><td>F1</td><td>&ge; 4.5</td><td>&lt; 10m</td><td>R$ 100</td></tr>
+                        <tr><td>F2</td><td>&ge; 4.8</td><td>&lt; 8m</td><td>R$ 150</td></tr>
+                        <tr><td>F3</td><td>&ge; 5.0</td><td>&lt; 6m</td><td>R$ 200</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 0.7rem; color: var(--text-muted);">* Critérios simultâneos. Avaliação mensal via ChatPro.</p>
+            </div>
         </div>
+    </div>
+</div>
 
+<div id="fdd" class="page">
+    <div class="container">
         <div class="card">
-            <h3 class="card-title"><i class="fas fa-gift"></i> Tabela de Bonificação</h3>
-            <table>
-                <thead><tr><th>Faixa</th><th>NPS</th><th>TMA</th><th>TME</th><th>Valor</th></tr></thead>
-                <tbody>
-                    <tr><td>Faixa 1</td><td>&ge; 4.5</td><td>&lt; 10min</td><td>&lt; 2min</td><td><strong>R$ 100,00</strong></td></tr>
-                    <tr><td>Faixa 2</td><td>&ge; 4.8</td><td>&lt; 8min</td><td>&lt; 2min</td><td><strong>R$ 150,00</strong></td></tr>
-                    <tr><td>Faixa 3</td><td>&ge; 5.0</td><td>&lt; 6min</td><td>&lt; 1min</td><td><strong>R$ 200,00</strong></td></tr>
-                </tbody>
-            </table>
-            <p style="font-size: 0.75rem; margin-top: 10px; color: var(--text-light);">* Os três critérios devem ser atingidos simultaneamente. Extração mensal do ChatPro.</p>
-        </div>
-    </section>
-
-    <!-- PÁGINA: FDD FORM -->
-    <section id="fdd" class="page">
-        <div class="card">
-            <h3 class="card-title"><i class="fas fa-edit"></i> Registro de Fluxo de Demandas</h3>
-            <form class="fdd-form" id="mainFddForm">
+            <h3 class="section-title"><i class="fas fa-edit"></i> Novo Registro FDD</h3>
+            <form class="fdd-form" id="fddForm">
                 <div class="form-group">
                     <label>Atendente</label>
                     <select id="atendenteSelect" required></select>
-                    <button type="button" class="btn-add" onclick="addNewItem('atendentes')">+ Novo Atendente</button>
+                    <button type="button" class="btn-add" onclick="addNewOption('atendentes')">+ Novo Nome</button>
                 </div>
                 <div class="form-group">
                     <label>Data</label>
                     <input type="date" id="inputData" required>
                 </div>
                 <div class="form-group full">
-                    <label>Cliente / Loja</label>
-                    <input type="text" id="inputCliente" placeholder="Ex: McDonald's Centro" required>
+                    <label>Cliente / Estabelecimento</label>
+                    <input type="text" id="inputCliente" placeholder="Nome do cliente" required>
                 </div>
                 <div class="form-group">
-                    <label>Motivo do Atendimento</label>
+                    <label>Motivo</label>
                     <select id="motivoSelect" required></select>
-                    <button type="button" class="btn-add" onclick="addNewItem('motivos')">+ Novo Motivo</button>
+                    <button type="button" class="btn-add" onclick="addNewOption('motivos')">+ Novo Motivo</button>
                 </div>
                 <div class="form-group">
                     <label>ID Conversa (ChatPro)</label>
-                    <input type="text" id="inputChatId" placeholder="Ex: CP-12345" required>
+                    <input type="text" id="inputChatId" placeholder="ID da conversa" required>
                 </div>
-                <button type="submit" class="btn-main full">SALVAR REGISTRO NO FIREBASE</button>
+                <button type="submit" class="btn-submit full">SALVAR REGISTRO</button>
             </form>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- PÁGINA: DASHBOARD -->
-    <section id="dash" class="page">
-        <div class="charts-container">
-            <div class="chart-box"><canvas id="chartAtendentes"></canvas></div>
-            <div class="chart-box"><canvas id="chartMotivos"></canvas></div>
+<div id="dash" class="page">
+    <div class="container">
+        <div class="dash-grid">
+            <div class="chart-container"><canvas id="atendenteChart"></canvas></div>
+            <div class="chart-container"><canvas id="motivoChart"></canvas></div>
         </div>
-    </section>
-
+    </div>
 </div>
 
 <script type="module">
@@ -255,32 +233,30 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // --- SINCRONIZAÇÃO DE LISTAS (Atendentes e Motivos) ---
-    function syncList(collectionName, selectId) {
-        onSnapshot(collection(db, collectionName), (snap) => {
-            const select = document.getElementById(selectId);
-            select.innerHTML = '<option value="">Selecione...</option>';
+    // FUNÇÕES DE SINCRONIZAÇÃO (Listas e Dados)
+    function syncOptions(colName, elementId) {
+        onSnapshot(collection(db, colName), (snap) => {
+            const el = document.getElementById(elementId);
+            el.innerHTML = '<option value="">Selecione...</option>';
             snap.forEach(d => {
                 const opt = document.createElement('option');
                 opt.value = d.id;
                 opt.textContent = d.id;
-                select.appendChild(opt);
+                el.appendChild(opt);
             });
         });
     }
 
-    syncList('atendentes', 'atendenteSelect');
-    syncList('motivos', 'motivoSelect');
+    syncOptions('atendentes', 'atendenteSelect');
+    syncOptions('motivos', 'motivoSelect');
 
-    window.addNewItem = async (type) => {
-        const val = prompt(`Digite o nome do novo ${type.slice(0, -1)}:`);
-        if(val) {
-            await setDoc(doc(db, type, val), { ativo: true });
-        }
-    }
+    window.addNewOption = async (type) => {
+        const val = prompt(`Digite o novo ${type.slice(0, -1)}:`);
+        if(val) await setDoc(doc(db, type, val), { created: new Date() });
+    };
 
-    // --- SALVAMENTO FDD ---
-    document.getElementById('mainFddForm').onsubmit = async (e) => {
+    // FORMULÁRIO
+    document.getElementById('fddForm').onsubmit = async (e) => {
         e.preventDefault();
         try {
             await addDoc(collection(db, "atendimentos"), {
@@ -291,51 +267,38 @@
                 chatId: document.getElementById('inputChatId').value,
                 timestamp: new Date()
             });
-            alert("Sucesso! O registro foi salvo no banco de dados.");
+            alert("Registro salvo com sucesso!");
             e.target.reset();
         } catch (err) { alert("Erro ao salvar: " + err); }
     };
 
-    // --- DASHBOARD ---
-    const ctxA = document.getElementById('chartAtendentes').getContext('2d');
-    const chartA = new Chart(ctxA, { 
-        type: 'bar', 
-        data: { labels: [], datasets: [{ label: 'Volume por Atendente', data: [], backgroundColor: '#1e3a8a' }] },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
-
-    const ctxM = document.getElementById('chartMotivos').getContext('2d');
-    const chartM = new Chart(ctxM, { 
-        type: 'doughnut', 
-        data: { labels: [], datasets: [{ data: [], backgroundColor: ['#0f172a','#1e3a8a','#f59e0b','#ef4444','#22c55e','#6366f1','#ec4899'] }] },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'Distribuição de Motivos' } } }
-    });
+    // DASHBOARDS
+    const chartA = new Chart(document.getElementById('atendenteChart'), { type: 'bar', data: { labels: [], datasets: [{ label: 'Volume por Atendente', data: [], backgroundColor: '#1e3a8a' }] }, options: { maintainAspectRatio: false } });
+    const chartM = new Chart(document.getElementById('motivoChart'), { type: 'doughnut', data: { labels: [], datasets: [{ data: [], backgroundColor: ['#0f172a','#1e3a8a','#f59e0b','#ef4444','#22c55e'] }] }, options: { maintainAspectRatio: false, plugins: { title: { display: true, text: 'Motivos de Chamado' } } } });
 
     onSnapshot(collection(db, "atendimentos"), (snap) => {
-        const statsA = {}; const statsM = {};
-        snap.forEach(doc => {
-            const d = doc.data();
-            statsA[d.atendente] = (statsA[d.atendente] || 0) + 1;
-            statsM[d.motivo] = (statsM[d.motivo] || 0) + 1;
+        const aData = {}; const mData = {};
+        snap.forEach(d => {
+            const r = d.data();
+            aData[r.atendente] = (aData[r.atendente] || 0) + 1;
+            mData[r.motivo] = (mData[r.motivo] || 0) + 1;
         });
-        
-        chartA.data.labels = Object.keys(statsA);
-        chartA.data.datasets[0].data = Object.values(statsA);
+        chartA.data.labels = Object.keys(aData);
+        chartA.data.datasets[0].data = Object.values(aData);
         chartA.update();
-
-        chartM.data.labels = Object.keys(statsM);
-        chartM.data.datasets[0].data = Object.values(statsM);
+        chartM.data.labels = Object.keys(mData);
+        chartM.data.datasets[0].data = Object.values(mData);
         chartM.update();
     });
 
 </script>
 
 <script>
-    function showPage(id) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.getElementById('btn-' + id).classList.add('active');
+    function showPage(p) {
+        document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(x => x.classList.remove('active'));
+        document.getElementById(p).classList.add('active');
+        document.getElementById('nav-' + p).classList.add('active');
     }
 </script>
 
