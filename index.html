@@ -40,27 +40,24 @@
         .section-title { font-size: 1.3rem; margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
         
         /* Manual Styles */
-        .mission-box { background: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 6px solid var(--accent); box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; gap: 20px; align-items: center; }
-        .resp-card { background: var(--bg); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--secondary); }
-        .timeline { border-left: 3px solid var(--border); padding-left: 20px; margin-left: 10px; }
-        .time-item { position: relative; margin-bottom: 15px; }
-        .time-item::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: var(--secondary); border-radius: 50%; }
+        .manual-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+        .info-box { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--accent); }
+        .step-item { margin-bottom: 15px; padding-left: 10px; border-left: 2px solid var(--border); }
         
         /* Form Styles */
         .fdd-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group.full { grid-column: span 2; }
-        label { font-weight: 600; font-size: 0.9rem; }
+        .full-width { grid-column: span 2; }
         input, select { padding: 12px; border: 1px solid var(--border); border-radius: 8px; outline: none; }
-        .btn-submit { grid-column: span 2; background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-submit { grid-column: span 2; background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
         .btn-submit:hover { background: var(--primary); }
+        .btn-secondary { background: #e2e8f0; color: var(--primary); padding: 8px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
 
         .bonus-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         .bonus-table th, .bonus-table td { padding: 12px; border: 1px solid var(--border); text-align: left; }
-        .bonus-table th { background: var(--bg); }
         .important-note { background: #fffbeb; border: 1px solid #fef3c7; padding: 15px; border-radius: 8px; margin-top: 15px; color: #92400e; font-size: 0.9rem; }
 
-        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .chart-container { background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border); min-height: 350px; }
     </style>
 </head>
@@ -73,97 +70,101 @@
     </div>
 </nav>
 
-<!-- PÁGINA 1: MANUAL (COMPLETO) -->
 <div id="manual" class="page active">
     <header>
-        <div class="container header-flex">
-            <div>
-                <h1>Atendente Órion v2.1</h1>
-                <p>Manual Operacional e Performance</p>
-            </div>
+        <div class="container">
+            <h1>Manual do Atendente Órion v2.1</h1>
+            <p>Guia Completo de Operação, Processos e Performance</p>
         </div>
     </header>
     <div class="container">
-        <div class="mission-box">
-            <i class="fas fa-bullseye" style="font-size: 1.5rem; color: var(--accent);"></i>
-            <div>
-                <h3 style="font-size: 1rem;">Missão do Cargo</h3>
-                <p style="font-size: 0.9rem;">Resolver a demanda do cliente de ponta a ponta, garantindo excelência operacional e controle de estoque.</p>
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
-            <div>
+        <div class="manual-grid">
+            <div class="main-content">
                 <section class="card">
-                    <h2 class="section-title"><i class="fas fa-tasks"></i> Responsabilidades</h2>
-                    <div class="resp-card">
-                        <strong>01. Atendimento:</strong> Suporte via ChatPro e registro no FDD.
+                    <h2 class="section-title"><i class="fas fa-bullseye"></i> 1. Missão e Responsabilidades</h2>
+                    <div class="info-box">
+                        <strong>Missão:</strong> Resolver a demanda do cliente de ponta a ponta, garantindo excelência operacional e controle rigoroso de estoque.
                     </div>
-                    <div class="resp-card">
-                        <strong>02. Controle de Insumos:</strong> Conferência de embalagens e auditoria de freezers.
+                    <p><strong>Responsabilidades Principais:</strong></p>
+                    <ul>
+                        <li>Atendimento via ChatPro com TMA reduzido.</li>
+                        <li>Registro obrigatório de cada atendimento no sistema FDD.</li>
+                        <li>Conferência diária de insumos e embalagens.</li>
+                        <li>Fiscalização semanal de etiquetas e auditoria de freezers.</li>
+                        <li>Reporte de quebras ou divergências ao gestor imediato.</li>
+                    </ul>
+                </section>
+
+                <section class="card">
+                    <h2 class="section-title"><i class="fas fa-route"></i> 2. Roteiro de Atendimento e Processos</h2>
+                    <div class="step-item">
+                        <strong>Passo 1: Abertura</strong> - Saudação padrão Órion e identificação do ID da conversa.
                     </div>
-                    <div class="resp-card">
-                        <strong>03. Organização:</strong> Padronização de etiquetas e fiscalização semanal de estoque.
+                    <div class="step-item">
+                        <strong>Passo 2: Triagem</strong> - Identificar se o motivo é Pedido, Estoque, Sistema ou Divergência.
+                    </div>
+                    <div class="step-item">
+                        <strong>Passo 3: Execução</strong> - Consultar sistema de estoque ou status do pedido em tempo real.
+                    </div>
+                    <div class="step-item">
+                        <strong>Passo 4: Registro</strong> - Lançar os dados no FDD para alimentar o Dashboard.
                     </div>
                 </section>
 
+                <section class="card">
+                    <h2 class="section-title"><i class="fas fa-plus-circle"></i> 3. Novos Tópicos Estratégicos</h2>
+                    <p><strong>I. Gestão de Crise (Pedidos Atrasados):</strong> Acionar a logística em até 5 minutos de atraso detectado.</p>
+                    <p><strong>II. Divergência de Estoque:</strong> Toda contagem errada deve gerar um alerta imediato no FDD.</p>
+                    <p><strong>III. Qualidade de Resposta:</strong> Uso obrigatório de gramática correta e tom profissional-amigável.</p>
+                    <p><strong>IV. Segurança de Dados:</strong> Proibido compartilhar IDs de conversas fora do ambiente Órion.</p>
+                    <p><strong>V. Manutenção do PDV:</strong> Garantir que o sistema de vendas esteja sempre online e sincronizado.</p>
+                </section>
+            </div>
+
+            <div class="sidebar">
                 <section class="card">
                     <h2 class="section-title"><i class="fas fa-gift"></i> Bonificação</h2>
                     <table class="bonus-table">
-                        <thead><tr><th>Faixa</th><th>Valor</th><th>Critérios</th></tr></thead>
+                        <thead><tr><th>Faixa</th><th>Valor</th></tr></thead>
                         <tbody>
-                            <tr><td><strong>Faixa 1</strong></td><td style="color: var(--success);">R$ 100,00</td><td>NPS 60 | TMA 10m</td></tr>
-                            <tr><td><strong>Faixa 3</strong></td><td style="color: var(--success);">R$ 200,00</td><td>NPS 75 | TMA 6m</td></tr>
+                            <tr><td>Faixa 1 (NPS 60)</td><td>R$ 100,00</td></tr>
+                            <tr><td>Faixa 2 (NPS 70)</td><td>R$ 150,00</td></tr>
+                            <tr><td>Faixa 3 (NPS 75)</td><td>R$ 200,00</td></tr>
                         </tbody>
                     </table>
                     <div class="important-note">
-                        <strong>Regra:</strong> Pagamento apenas mediante <strong>atingimento total</strong> da faixa. Sem valores proporcionais.
+                        <strong>Atenção:</strong> Necessário atingir a <strong>totalidade</strong> de cada faixa para receber. Sem pagamentos proporcionais.
                     </div>
+                </section>
+                <section class="card">
+                    <h2 class="section-title"><i class="fas fa-history"></i> Rotina</h2>
+                    <p><small>10:00 - Ponto e Abertura</small></p>
+                    <p><small>11:00 - Auditoria Rápida</small></p>
+                    <p><small>12:00 às 17:00 - Foco ChatPro</small></p>
+                    <p><small>18:00 - Fechamento e FDD</small></p>
                 </section>
             </div>
-
-            <aside>
-                <section class="card">
-                    <h2 class="section-title"><i class="fas fa-clock"></i> Rotina</h2>
-                    <div class="timeline">
-                        <div class="time-item"><strong>10:00:</strong> Abertura e Ponto.</div>
-                        <div class="time-item"><strong>10:15:</strong> Auditoria de Estoque.</div>
-                        <div class="time-item"><strong>11:00:</strong> Operação ChatPro.</div>
-                        <div class="time-item"><strong>17:30:</strong> Relatórios e Fechamento.</div>
-                    </div>
-                </section>
-            </aside>
         </div>
     </div>
 </div>
 
-<!-- PÁGINA 2: FDD -->
 <div id="fdd" class="page">
     <div class="container">
         <div class="card">
-            <h2 class="section-title"><i class="fas fa-edit"></i> Registro FDD</h2>
+            <h2 class="section-title"><i class="fas fa-edit"></i> Fluxo de Demandas (FDD)</h2>
             <form class="fdd-form" id="fddForm">
                 <div class="form-group">
                     <label>Atendente</label>
-                    <select id="atendenteSelect" required>
-                        <option value="">Selecione...</option>
-                        <option value="Maria Clara">Maria Clara</option>
-                        <option value="Mariane">Mariane</option>
-                        <option value="ADD_NEW">+ Adicionar Novo Atendente</option>
-                    </select>
-                </div>
-                <div id="newAtendenteGroup" class="form-group" style="display:none;">
-                    <label>Nome do Novo Atendente</label>
-                    <input type="text" id="newAtendenteName" placeholder="Digite o nome...">
+                    <select id="atendenteSelect" required></select>
+                    <button type="button" class="btn-secondary" onclick="addAtendente()">+ Novo Atendente</button>
                 </div>
                 <div class="form-group">
-                    <label>Nome do Cliente</label>
+                    <label>Cliente</label>
                     <input type="text" id="cliente" required>
                 </div>
                 <div class="form-group">
                     <label>Motivo</label>
-                    <select id="motivo" required>
-                        <option value="">Selecione...</option>
+                    <select id="motivoSelect" required>
                         <option>1. Pedido atrasado</option>
                         <option>2. Pedido errado</option>
                         <option>3. Contagem de estoque</option>
@@ -172,6 +173,7 @@
                         <option>6. Falta de item em estoque / troca</option>
                         <option>7. Problema com sistema</option>
                     </select>
+                    <button type="button" class="btn-secondary" onclick="addMotivo()">+ Novo Motivo</button>
                 </div>
                 <div class="form-group">
                     <label>ID Conversa</label>
@@ -181,112 +183,90 @@
                     <label>Data</label>
                     <input type="date" id="data" required>
                 </div>
-                <button type="submit" class="btn-submit">Salvar Registro no Firebase</button>
+                <button type="submit" class="btn-submit">Salvar no Firebase</button>
             </form>
         </div>
 
         <div class="dash-grid">
             <div class="chart-container"><canvas id="motivoChart"></canvas></div>
-            <div class="chart-container"><canvas id="volumeChart"></canvas></div>
+            <div class="chart-container"><canvas id="atendenteChart"></canvas></div>
         </div>
     </div>
 </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, setDoc, doc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyB0RC_VWGVkd3q-VY3P7EZVCWvUprzenaE",
-    authDomain: "fluxo-de-demanda-atendimento.firebaseapp.com",
-    projectId: "fluxo-de-demanda-atendimento",
-    storageBucket: "fluxo-de-demanda-atendimento.firebasestorage.app",
-    messagingSenderId: "835699645902",
-    appId: "1:835699645902:web:9003139dfd6dc5e0c95f9f"
-  };
+    const firebaseConfig = {
+        apiKey: "AIzaSyB0RC_VWGVkd3q-VY3P7EZVCWvUprzenaE",
+        authDomain: "fluxo-de-demanda-atendimento.firebaseapp.com",
+        projectId: "fluxo-de-demanda-atendimento",
+        storageBucket: "fluxo-de-demanda-atendimento.firebasestorage.app",
+        messagingSenderId: "835699645902",
+        appId: "1:835699645902:web:9003139dfd6dc5e0c95f9f"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-  // --- Lógica de Atendentes Dinâmicos ---
-  const atendenteSelect = document.getElementById('atendenteSelect');
-  const newAtendenteGroup = document.getElementById('newAtendenteGroup');
+    // Listas Dinâmicas (Local + Firebase)
+    let atendentes = ["Maria Clara", "Mariane"];
+    let motivos = ["1. Pedido atrasado", "2. Pedido errado", "3. Contagem de estoque", "4. Estoque com divergência", "5. Status de pedido", "6. Falta de item em estoque / troca", "7. Problema com sistema"];
 
-  async function loadAtendentes() {
-      const q = query(collection(db, "atendentes"));
-      onSnapshot(q, (snapshot) => {
-          // Limpa as opções dinâmicas mantendo as iniciais
-          atendenteSelect.innerHTML = '<option value="">Selecione...</option><option value="Maria Clara">Maria Clara</option><option value="Mariane">Mariane</option><option value="ADD_NEW">+ Adicionar Novo Atendente</option>';
-          snapshot.forEach(doc => {
-              const opt = document.createElement('option');
-              opt.value = doc.data().nome;
-              opt.textContent = doc.data().nome;
-              atendenteSelect.insertBefore(opt, atendenteSelect.lastChild);
-          });
-      });
-  }
-  loadAtendentes();
-
-  atendenteSelect.onchange = () => {
-      newAtendenteGroup.style.display = atendenteSelect.value === 'ADD_NEW' ? 'block' : 'none';
-  };
-
-  // --- Envio de Formulário ---
-  document.getElementById('fddForm').onsubmit = async (e) => {
-    e.preventDefault();
-    let nomeFinal = atendenteSelect.value;
-    
-    if(nomeFinal === 'ADD_NEW') {
-        nomeFinal = document.getElementById('newAtendenteName').value;
-        await addDoc(collection(db, "atendentes"), { nome: nomeFinal });
+    function updateSelects() {
+        const aSel = document.getElementById('atendenteSelect');
+        const mSel = document.getElementById('motivoSelect');
+        aSel.innerHTML = atendentes.map(a => `<option>${a}</option>`).join('');
+        mSel.innerHTML = motivos.map(m => `<option>${m}</option>`).join('');
     }
+    updateSelects();
 
-    try {
+    window.addAtendente = () => {
+        const n = prompt("Nome do novo atendente:");
+        if(n) { atendentes.push(n); updateSelects(); }
+    };
+    window.addMotivo = () => {
+        const n = prompt("Novo motivo:");
+        if(n) { motivos.push(n); updateSelects(); }
+    };
+
+    // Salvar
+    document.getElementById('fddForm').onsubmit = async (e) => {
+        e.preventDefault();
         await addDoc(collection(db, "atendimentos"), {
-            atendente: nomeFinal,
+            atendente: document.getElementById('atendenteSelect').value,
             cliente: document.getElementById('cliente').value,
-            motivo: document.getElementById('motivo').value,
+            motivo: document.getElementById('motivoSelect').value,
             chatId: document.getElementById('chatId').value,
             data: document.getElementById('data').value,
             timestamp: new Date()
         });
-        alert("Salvo com sucesso!");
+        alert("Salvo!");
         document.getElementById('fddForm').reset();
-        newAtendenteGroup.style.display = 'none';
-    } catch (err) { alert("Erro ao salvar: " + err); }
-  };
+    };
 
-  // --- Gráficos em Tempo Real ---
-  const ctxM = document.getElementById('motivoChart').getContext('2d');
-  const motivoChart = new Chart(ctxM, {
-      type: 'doughnut',
-      data: { labels: [], datasets: [{ data: [], backgroundColor: ['#1e3a8a', '#f59e0b', '#10b981', '#ef4444', '#64748b', '#7c3aed', '#db2777'] }] },
-      options: { plugins: { title: { display: true, text: 'Motivos de Atendimento' } } }
-  });
+    // Gráficos Reais
+    const ctxM = document.getElementById('motivoChart').getContext('2d');
+    const chartM = new Chart(ctxM, { type: 'pie', data: { labels: [], datasets: [{data:[], backgroundColor: ['#1e3a8a', '#f59e0b', '#10b981', '#ef4444', '#64748b', '#7c3aed', '#db2777']}] }, options: {plugins:{title:{display:true, text:'Demandas por Motivo'}}}});
 
-  const ctxV = document.getElementById('volumeChart').getContext('2d');
-  const volumeChart = new Chart(ctxV, {
-      type: 'bar',
-      data: { labels: [], datasets: [{ label: 'Volume', data: [], backgroundColor: '#1e3a8a' }] },
-      options: { plugins: { title: { display: true, text: 'Volume Diário' } } }
-  });
+    const ctxA = document.getElementById('atendenteChart').getContext('2d');
+    const chartA = new Chart(ctxA, { type: 'bar', data: { labels: [], datasets: [{label: 'Volume', data:[], backgroundColor: '#1e3a8a'}] }, options: {plugins:{title:{display:true, text:'Volume por Atendente'}}}});
 
-  onSnapshot(collection(db, "atendimentos"), (snap) => {
-      const mCounts = {}; const dCounts = {};
-      snap.forEach(d => {
-          const item = d.data();
-          mCounts[item.motivo] = (mCounts[item.motivo] || 0) + 1;
-          dCounts[item.data] = (dCounts[item.data] || 0) + 1;
-      });
-      motivoChart.data.labels = Object.keys(mCounts);
-      motivoChart.data.datasets[0].data = Object.values(mCounts);
-      motivoChart.update();
-      
-      const sortedDates = Object.keys(dCounts).sort();
-      volumeChart.data.labels = sortedDates;
-      volumeChart.data.datasets[0].data = sortedDates.map(k => dCounts[k]);
-      volumeChart.update();
-  });
+    onSnapshot(collection(db, "atendimentos"), (snap) => {
+        const mData = {}; const aData = {};
+        snap.forEach(doc => {
+            const d = doc.data();
+            mData[d.motivo] = (mData[d.motivo] || 0) + 1;
+            aData[d.atendente] = (aData[d.atendente] || 0) + 1;
+        });
+        chartM.data.labels = Object.keys(mData);
+        chartM.data.datasets[0].data = Object.values(mData);
+        chartM.update();
+        chartA.data.labels = Object.keys(aData);
+        chartA.data.datasets[0].data = Object.values(aData);
+        chartA.update();
+    });
 </script>
 
 <script>
