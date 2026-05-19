@@ -11,192 +11,237 @@
             --primary: #0f172a;
             --secondary: #1e3a8a;
             --accent: #f59e0b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
             --danger: #ef4444;
-            --success: #10b981;
+            --success: #22c55e;
+            --border: #e2e8f0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
-        
-        nav { background: var(--primary); padding: 15px 0; border-bottom: 2px solid var(--accent); position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 20px; padding: 0 20px; }
-        .nav-link { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 8px 16px; border-radius: 6px; transition: 0.3s; cursor: pointer; }
-        .nav-link:hover { background: rgba(255,255,255,0.1); }
-        .nav-link.active { background: var(--accent); color: var(--primary); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text-dark); line-height: 1.5; }
 
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .page { display: none; }
+        /* Navigation */
+        nav { background: var(--primary); padding: 0.75rem 0; border-bottom: 3px solid var(--accent); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; gap: 15px; padding: 0 20px; }
+        .nav-btn { background: transparent; border: none; color: white; padding: 10px 20px; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.3s; font-size: 0.9rem; }
+        .nav-btn:hover { background: rgba(255,255,255,0.1); }
+        .nav-btn.active { background: var(--accent); color: var(--primary); }
+
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 20px; }
+        .page { display: none; animation: fadeIn 0.4s ease; }
         .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px 0; border-bottom: 4px solid var(--accent); border-radius: 12px 12px 0 0; }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
-        
-        .card { background: white; padding: 25px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .section-title { font-size: 1.3rem; margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
-        
-        /* Manual Styles */
-        .manual-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
-        .info-box { background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--accent); }
-        .step-item { margin-bottom: 15px; padding-left: 10px; border-left: 2px solid var(--border); }
-        
-        /* Form Styles */
-        .fdd-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .full-width { grid-column: span 2; }
-        input, select { padding: 12px; border: 1px solid var(--border); border-radius: 8px; outline: none; }
-        .btn-submit { grid-column: span 2; background: var(--secondary); color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-submit:hover { background: var(--primary); }
-        .btn-secondary { background: #e2e8f0; color: var(--primary); padding: 8px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+        /* Header */
+        .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 3rem 2rem; border-radius: 12px; margin-bottom: 2rem; border-bottom: 5px solid var(--accent); }
+        .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .hero-meta { display: flex; gap: 20px; font-size: 0.85rem; opacity: 0.9; flex-wrap: wrap; }
 
-        .bonus-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .bonus-table th, .bonus-table td { padding: 12px; border: 1px solid var(--border); text-align: left; }
-        .important-note { background: #fffbeb; border: 1px solid #fef3c7; padding: 15px; border-radius: 8px; margin-top: 15px; color: #92400e; font-size: 0.9rem; }
+        /* Layout Cards */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .card { background: var(--card); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .card-title { font-size: 1.1rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        
+        /* Manual Content */
+        .principle-box { background: #fffbeb; border: 1px solid #fef3c7; padding: 1rem; border-radius: 8px; color: #92400e; margin-bottom: 1.5rem; font-style: italic; }
+        .resp-item { margin-bottom: 1rem; padding-left: 1rem; border-left: 3px solid var(--accent); }
+        .resp-item h4 { font-size: 0.95rem; color: var(--primary); }
+        .resp-item p { font-size: 0.85rem; color: var(--text-light); }
+        
+        .timeline { border-left: 2px dashed var(--border); padding-left: 20px; margin-left: 10px; }
+        .time-block { position: relative; margin-bottom: 1.5rem; }
+        .time-block::before { content: ''; position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+        .time-label { font-weight: 800; color: var(--secondary); font-size: 0.85rem; }
 
-        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .chart-container { background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border); min-height: 350px; }
+        .forbidden-list { list-style: none; }
+        .forbidden-list li { color: var(--danger); font-size: 0.9rem; margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; }
+
+        /* Tables & KPIs */
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1rem; }
+        .kpi-card { background: var(--bg); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+        .kpi-val { display: block; font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+        .kpi-name { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 10px; border: 1px solid var(--border); text-align: left; }
+        th { background: #f8fafc; color: var(--text-light); }
+
+        /* Form */
+        .fdd-form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .full { grid-column: span 2; }
+        label { font-size: 0.85rem; font-weight: 600; }
+        input, select { padding: 10px; border-radius: 8px; border: 1px solid var(--border); outline: none; transition: 0.2s; }
+        input:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
+        .btn-main { background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-main:hover { background: var(--primary); }
+        .btn-add { background: #e2e8f0; color: var(--text-dark); border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; margin-top: 5px; width: fit-content; }
+
+        /* Dashboard */
+        .charts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .chart-box { background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); min-height: 400px; }
+
+        @media (max-width: 768px) {
+            .fdd-form { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="nav-container">
-        <a class="nav-link active" id="nav-manual" onclick="showPage('manual')">Manual do Atendente</a>
-        <a class="nav-link" id="nav-fdd" onclick="showPage('fdd')">Fluxo de Demandas (FDD)</a>
+        <button class="nav-btn active" id="btn-manual" onclick="showPage('manual')">Manual do Atendente</button>
+        <button class="nav-btn" id="btn-fdd" onclick="showPage('fdd')">FDD (Registro)</button>
+        <button class="nav-btn" id="btn-dash" onclick="showPage('dash')">Dashboard</button>
     </div>
 </nav>
 
-<div id="manual" class="page active">
-    <header>
-        <div class="container">
-            <h1>Manual do Atendente Órion v2.1</h1>
-            <p>Guia Completo de Operação, Processos e Performance</p>
-        </div>
-    </header>
-    <div class="container">
-        <div class="manual-grid">
-            <div class="main-content">
-                <section class="card">
-                    <h2 class="section-title"><i class="fas fa-bullseye"></i> 1. Missão e Responsabilidades</h2>
-                    <div class="info-box">
-                        <strong>Missão:</strong> Resolver a demanda do cliente de ponta a ponta, garantindo excelência operacional e controle rigoroso de estoque.
-                    </div>
-                    <p><strong>Responsabilidades Principais:</strong></p>
-                    <ul>
-                        <li>Atendimento via ChatPro com TMA reduzido.</li>
-                        <li>Registro obrigatório de cada atendimento no sistema FDD.</li>
-                        <li>Conferência diária de insumos e embalagens.</li>
-                        <li>Fiscalização semanal de etiquetas e auditoria de freezers.</li>
-                        <li>Reporte de quebras ou divergências ao gestor imediato.</li>
-                    </ul>
-                </section>
-
-                <section class="card">
-                    <h2 class="section-title"><i class="fas fa-route"></i> 2. Roteiro de Atendimento e Processos</h2>
-                    <div class="step-item">
-                        <strong>Passo 1: Abertura</strong> - Saudação padrão Órion e identificação do ID da conversa.
-                    </div>
-                    <div class="step-item">
-                        <strong>Passo 2: Triagem</strong> - Identificar se o motivo é Pedido, Estoque, Sistema ou Divergência.
-                    </div>
-                    <div class="step-item">
-                        <strong>Passo 3: Execução</strong> - Consultar sistema de estoque ou status do pedido em tempo real.
-                    </div>
-                    <div class="step-item">
-                        <strong>Passo 4: Registro</strong> - Lançar os dados no FDD para alimentar o Dashboard.
-                    </div>
-                </section>
-
-                <section class="card">
-                    <h2 class="section-title"><i class="fas fa-plus-circle"></i> 3. Novos Tópicos Estratégicos</h2>
-                    <p><strong>I. Gestão de Crise (Pedidos Atrasados):</strong> Acionar a logística em até 5 minutos de atraso detectado.</p>
-                    <p><strong>II. Divergência de Estoque:</strong> Toda contagem errada deve gerar um alerta imediato no FDD.</p>
-                    <p><strong>III. Qualidade de Resposta:</strong> Uso obrigatório de gramática correta e tom profissional-amigável.</p>
-                    <p><strong>IV. Segurança de Dados:</strong> Proibido compartilhar IDs de conversas fora do ambiente Órion.</p>
-                    <p><strong>V. Manutenção do PDV:</strong> Garantir que o sistema de vendas esteja sempre online e sincronizado.</p>
-                </section>
-            </div>
-
-            <div class="sidebar">
-                <section class="card">
-                    <h2 class="section-title"><i class="fas fa-gift"></i> Bonificação</h2>
-                    <table class="bonus-table">
-                        <thead><tr><th>Faixa</th><th>Valor</th></tr></thead>
-                        <tbody>
-                            <tr><td>Faixa 1 (NPS 60)</td><td>R$ 100,00</td></tr>
-                            <tr><td>Faixa 2 (NPS 70)</td><td>R$ 150,00</td></tr>
-                            <tr><td>Faixa 3 (NPS 75)</td><td>R$ 200,00</td></tr>
-                        </tbody>
-                    </table>
-                    <div class="important-note">
-                        <strong>Atenção:</strong> Necessário atingir a <strong>totalidade</strong> de cada faixa para receber. Sem pagamentos proporcionais.
-                    </div>
-                </section>
-                <section class="card">
-                    <h2 class="section-title"><i class="fas fa-history"></i> Rotina</h2>
-                    <p><small>10:00 - Ponto e Abertura</small></p>
-                    <p><small>11:00 - Auditoria Rápida</small></p>
-                    <p><small>12:00 às 17:00 - Foco ChatPro</small></p>
-                    <p><small>18:00 - Fechamento e FDD</small></p>
-                </section>
+<div class="container">
+    
+    <!-- PÁGINA: MANUAL -->
+    <section id="manual" class="page active">
+        <div class="hero">
+            <h1>Atendente Órion</h1>
+            <div class="hero-meta">
+                <span><i class="fas fa-layer-group"></i> Área: Operações</span>
+                <span><i class="fas fa-user-tie"></i> Gestor: Gerente Operacional</span>
+                <span><i class="fas fa-calendar-alt"></i> Versão: 2.0 (Abril/2026)</span>
             </div>
         </div>
-    </div>
-</div>
 
-<div id="fdd" class="page">
-    <div class="container">
+        <div class="principle-box">
+            <strong>Princípio Orientador:</strong> O atendente não encerra sua atuação ao receber a demanda. Ele encerra ao confirmar que o cliente teve seu problema resolvido, independentemente de quem executou a solução.
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-bullseye"></i> Missão do Cargo</h3>
+                <p style="font-size: 0.9rem;">Ser o <strong>ponto de resolução</strong> do cliente, não apenas o ponto de contato. Conduzir a demanda até o desfecho, mobilizando recursos internos.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> KPIs Meta</h3>
+                <div class="kpi-grid">
+                    <div class="kpi-card"><span class="kpi-val">&lt; 5m</span><span class="kpi-name">TMA</span></div>
+                    <div class="kpi-card"><span class="kpi-val">&ge; 60</span><span class="kpi-name">NPS</span></div>
+                    <div class="kpi-card"><span class="kpi-val">&lt; 1m</span><span class="kpi-name">TME</span></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-ban"></i> O que NÃO fazer</h3>
+                <ul class="forbidden-list">
+                    <li><i class="fas fa-times-circle"></i> Tomar decisões comerciais/preços.</li>
+                    <li><i class="fas fa-times-circle"></i> Resolver risco de churn sem o CS.</li>
+                    <li><i class="fas fa-times-circle"></i> Encerrar sem confirmação do cliente.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid-3" style="grid-template-columns: 2fr 1fr;">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-clipboard-list"></i> Responsabilidades</h3>
+                <div class="resp-item">
+                    <h4>01. Atendimento ao Cliente</h4>
+                    <p>Receber, registrar via ChatPro e acompanhar até a resolução. A demanda só morre quando o cliente valida.</p>
+                </div>
+                <div class="resp-item">
+                    <h4>02. Controle Operacional</h4>
+                    <p>Conferir estoques, embalagens e status de pedidos na expedição sob demanda.</p>
+                </div>
+                <div class="resp-item">
+                    <h4>03. Encaminhamento Interno</h4>
+                    <p>Manter cards no Trello/FDD atualizados com setor, prazo e status real.</p>
+                </div>
+                <div class="resp-item">
+                    <h4>04. Suporte Técnico</h4>
+                    <p>Acionar suporte via WhatsApp e documentar horário/problema para rastreabilidade.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-clock"></i> Rotina Diária</h3>
+                <div class="timeline">
+                    <div class="time-block">
+                        <span class="time-label">10:00 - Abertura</span>
+                        <p style="font-size: 0.8rem;">Ponto e conferência imediata do ChatPro.</p>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-label">10:30 - Revisão</span>
+                        <p style="font-size: 0.8rem;">Cobrar setores internos sobre demandas abertas.</p>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-label">11:00 às 17:30</span>
+                        <p style="font-size: 0.8rem;">Atendimento receptivo e suporte operacional.</p>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-label">17:30 - Passagem</span>
+                        <p style="font-size: 0.8rem;">Transferência de bastão e preenchimento FDD.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card">
-            <h2 class="section-title"><i class="fas fa-edit"></i> Fluxo de Demandas (FDD)</h2>
-            <form class="fdd-form" id="fddForm">
+            <h3 class="card-title"><i class="fas fa-gift"></i> Tabela de Bonificação</h3>
+            <table>
+                <thead><tr><th>Faixa</th><th>NPS</th><th>TMA</th><th>TME</th><th>Valor</th></tr></thead>
+                <tbody>
+                    <tr><td>Faixa 1</td><td>&ge; 4.5</td><td>&lt; 10min</td><td>&lt; 2min</td><td><strong>R$ 100,00</strong></td></tr>
+                    <tr><td>Faixa 2</td><td>&ge; 4.8</td><td>&lt; 8min</td><td>&lt; 2min</td><td><strong>R$ 150,00</strong></td></tr>
+                    <tr><td>Faixa 3</td><td>&ge; 5.0</td><td>&lt; 6min</td><td>&lt; 1min</td><td><strong>R$ 200,00</strong></td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.75rem; margin-top: 10px; color: var(--text-light);">* Os três critérios devem ser atingidos simultaneamente. Extração mensal do ChatPro.</p>
+        </div>
+    </section>
+
+    <!-- PÁGINA: FDD FORM -->
+    <section id="fdd" class="page">
+        <div class="card">
+            <h3 class="card-title"><i class="fas fa-edit"></i> Registro de Fluxo de Demandas</h3>
+            <form class="fdd-form" id="mainFddForm">
                 <div class="form-group">
                     <label>Atendente</label>
                     <select id="atendenteSelect" required></select>
-                    <button type="button" class="btn-secondary" onclick="addAtendente()">+ Novo Atendente</button>
-                </div>
-                <div class="form-group">
-                    <label>Cliente</label>
-                    <input type="text" id="cliente" required>
-                </div>
-                <div class="form-group">
-                    <label>Motivo</label>
-                    <select id="motivoSelect" required>
-                        <option>1. Pedido atrasado</option>
-                        <option>2. Pedido errado</option>
-                        <option>3. Contagem de estoque</option>
-                        <option>4. Estoque com divergência</option>
-                        <option>5. Status de pedido</option>
-                        <option>6. Falta de item em estoque / troca</option>
-                        <option>7. Problema com sistema</option>
-                    </select>
-                    <button type="button" class="btn-secondary" onclick="addMotivo()">+ Novo Motivo</button>
-                </div>
-                <div class="form-group">
-                    <label>ID Conversa</label>
-                    <input type="text" id="chatId" required>
+                    <button type="button" class="btn-add" onclick="addNewItem('atendentes')">+ Novo Atendente</button>
                 </div>
                 <div class="form-group">
                     <label>Data</label>
-                    <input type="date" id="data" required>
+                    <input type="date" id="inputData" required>
                 </div>
-                <button type="submit" class="btn-submit">Salvar no Firebase</button>
+                <div class="form-group full">
+                    <label>Cliente / Loja</label>
+                    <input type="text" id="inputCliente" placeholder="Ex: McDonald's Centro" required>
+                </div>
+                <div class="form-group">
+                    <label>Motivo do Atendimento</label>
+                    <select id="motivoSelect" required></select>
+                    <button type="button" class="btn-add" onclick="addNewItem('motivos')">+ Novo Motivo</button>
+                </div>
+                <div class="form-group">
+                    <label>ID Conversa (ChatPro)</label>
+                    <input type="text" id="inputChatId" placeholder="Ex: CP-12345" required>
+                </div>
+                <button type="submit" class="btn-main full">SALVAR REGISTRO NO FIREBASE</button>
             </form>
         </div>
+    </section>
 
-        <div class="dash-grid">
-            <div class="chart-container"><canvas id="motivoChart"></canvas></div>
-            <div class="chart-container"><canvas id="atendenteChart"></canvas></div>
+    <!-- PÁGINA: DASHBOARD -->
+    <section id="dash" class="page">
+        <div class="charts-container">
+            <div class="chart-box"><canvas id="chartAtendentes"></canvas></div>
+            <div class="chart-box"><canvas id="chartMotivos"></canvas></div>
         </div>
-    </div>
+    </section>
+
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyB0RC_VWGVkd3q-VY3P7EZVCWvUprzenaE",
@@ -210,72 +255,89 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Listas Dinâmicas (Local + Firebase)
-    let atendentes = ["Maria Clara", "Mariane"];
-    let motivos = ["1. Pedido atrasado", "2. Pedido errado", "3. Contagem de estoque", "4. Estoque com divergência", "5. Status de pedido", "6. Falta de item em estoque / troca", "7. Problema com sistema"];
-
-    function updateSelects() {
-        const aSel = document.getElementById('atendenteSelect');
-        const mSel = document.getElementById('motivoSelect');
-        aSel.innerHTML = atendentes.map(a => `<option>${a}</option>`).join('');
-        mSel.innerHTML = motivos.map(m => `<option>${m}</option>`).join('');
-    }
-    updateSelects();
-
-    window.addAtendente = () => {
-        const n = prompt("Nome do novo atendente:");
-        if(n) { atendentes.push(n); updateSelects(); }
-    };
-    window.addMotivo = () => {
-        const n = prompt("Novo motivo:");
-        if(n) { motivos.push(n); updateSelects(); }
-    };
-
-    // Salvar
-    document.getElementById('fddForm').onsubmit = async (e) => {
-        e.preventDefault();
-        await addDoc(collection(db, "atendimentos"), {
-            atendente: document.getElementById('atendenteSelect').value,
-            cliente: document.getElementById('cliente').value,
-            motivo: document.getElementById('motivoSelect').value,
-            chatId: document.getElementById('chatId').value,
-            data: document.getElementById('data').value,
-            timestamp: new Date()
+    // --- SINCRONIZAÇÃO DE LISTAS (Atendentes e Motivos) ---
+    function syncList(collectionName, selectId) {
+        onSnapshot(collection(db, collectionName), (snap) => {
+            const select = document.getElementById(selectId);
+            select.innerHTML = '<option value="">Selecione...</option>';
+            snap.forEach(d => {
+                const opt = document.createElement('option');
+                opt.value = d.id;
+                opt.textContent = d.id;
+                select.appendChild(opt);
+            });
         });
-        alert("Salvo!");
-        document.getElementById('fddForm').reset();
+    }
+
+    syncList('atendentes', 'atendenteSelect');
+    syncList('motivos', 'motivoSelect');
+
+    window.addNewItem = async (type) => {
+        const val = prompt(`Digite o nome do novo ${type.slice(0, -1)}:`);
+        if(val) {
+            await setDoc(doc(db, type, val), { ativo: true });
+        }
+    }
+
+    // --- SALVAMENTO FDD ---
+    document.getElementById('mainFddForm').onsubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await addDoc(collection(db, "atendimentos"), {
+                atendente: document.getElementById('atendenteSelect').value,
+                data: document.getElementById('inputData').value,
+                cliente: document.getElementById('inputCliente').value,
+                motivo: document.getElementById('motivoSelect').value,
+                chatId: document.getElementById('inputChatId').value,
+                timestamp: new Date()
+            });
+            alert("Sucesso! O registro foi salvo no banco de dados.");
+            e.target.reset();
+        } catch (err) { alert("Erro ao salvar: " + err); }
     };
 
-    // Gráficos Reais
-    const ctxM = document.getElementById('motivoChart').getContext('2d');
-    const chartM = new Chart(ctxM, { type: 'pie', data: { labels: [], datasets: [{data:[], backgroundColor: ['#1e3a8a', '#f59e0b', '#10b981', '#ef4444', '#64748b', '#7c3aed', '#db2777']}] }, options: {plugins:{title:{display:true, text:'Demandas por Motivo'}}}});
+    // --- DASHBOARD ---
+    const ctxA = document.getElementById('chartAtendentes').getContext('2d');
+    const chartA = new Chart(ctxA, { 
+        type: 'bar', 
+        data: { labels: [], datasets: [{ label: 'Volume por Atendente', data: [], backgroundColor: '#1e3a8a' }] },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
 
-    const ctxA = document.getElementById('atendenteChart').getContext('2d');
-    const chartA = new Chart(ctxA, { type: 'bar', data: { labels: [], datasets: [{label: 'Volume', data:[], backgroundColor: '#1e3a8a'}] }, options: {plugins:{title:{display:true, text:'Volume por Atendente'}}}});
+    const ctxM = document.getElementById('chartMotivos').getContext('2d');
+    const chartM = new Chart(ctxM, { 
+        type: 'doughnut', 
+        data: { labels: [], datasets: [{ data: [], backgroundColor: ['#0f172a','#1e3a8a','#f59e0b','#ef4444','#22c55e','#6366f1','#ec4899'] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'Distribuição de Motivos' } } }
+    });
 
     onSnapshot(collection(db, "atendimentos"), (snap) => {
-        const mData = {}; const aData = {};
+        const statsA = {}; const statsM = {};
         snap.forEach(doc => {
             const d = doc.data();
-            mData[d.motivo] = (mData[d.motivo] || 0) + 1;
-            aData[d.atendente] = (aData[d.atendente] || 0) + 1;
+            statsA[d.atendente] = (statsA[d.atendente] || 0) + 1;
+            statsM[d.motivo] = (statsM[d.motivo] || 0) + 1;
         });
-        chartM.data.labels = Object.keys(mData);
-        chartM.data.datasets[0].data = Object.values(mData);
-        chartM.update();
-        chartA.data.labels = Object.keys(aData);
-        chartA.data.datasets[0].data = Object.values(aData);
+        
+        chartA.data.labels = Object.keys(statsA);
+        chartA.data.datasets[0].data = Object.values(statsA);
         chartA.update();
+
+        chartM.data.labels = Object.keys(statsM);
+        chartM.data.datasets[0].data = Object.values(statsM);
+        chartM.update();
     });
+
 </script>
 
 <script>
-    function showPage(p) {
-        document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
-        document.querySelectorAll('.nav-link').forEach(x => x.classList.remove('active'));
-        document.getElementById(p).classList.add('active');
-        document.getElementById('nav-'+p).classList.add('active');
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.getElementById('btn-' + id).classList.add('active');
     }
 </script>
+
 </body>
 </html>
